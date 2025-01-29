@@ -99,7 +99,7 @@ class TextAnalyzer:
             # Formality indicators
             formality_metrics = {
                 'personal_pronouns': sum(1 for token in doc if token.pos_ == 'PRON'),
-                'contractions': len(re.findall(r"'", text)),
+                'contractions': len(re.findall(r"'", text)) - (len(re.findall(r"'s", text)) + len(re.findall(r"s'", text))),
                 'passive_voice': sum(1 for token in doc if token.dep_ == 'nsubjpass'),
                 'academic_words': sum(1 for token in doc if token.pos_ in ['NOUN', 'ADJ', 'ADV'] and len(token.text) > 6),
                 'coordinating_conjunctions': sum(1 for token in doc if token.pos_ == 'CCONJ'),
